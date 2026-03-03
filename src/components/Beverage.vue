@@ -26,6 +26,9 @@ import Cold from "./Cold.vue";
 
 type Props = {
   isIced: boolean;
+  creamerType:string;
+  teaType:string;
+  syrupType:string;
 };
 defineProps<Props>();
 </script>
