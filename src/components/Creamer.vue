@@ -6,12 +6,13 @@
 
 <script setup lang="ts">
 import { CreamerType} from ".././stores/beverage";
-import {watch} from "vue";
+import { watch} from "vue";
 type creamProp = {
  cream: CreamerType;
 }
 const props = defineProps<creamProp>();
 watch(()=>props.cream, (x)=>{document.documentElement.style.setProperty("--foam-color", x.color );});
+
 </script>
 
 
@@ -21,7 +22,7 @@ watch(()=>props.cream, (x)=>{document.documentElement.style.setProperty("--foam-
 
 
 .froth {
-  
+  background-color: #c6c6c6;
   overflow: visible;
   transform: translateY(400%);
   position: relative;

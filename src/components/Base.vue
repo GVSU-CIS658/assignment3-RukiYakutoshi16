@@ -4,13 +4,18 @@
 
 <script setup lang="ts">
 import { BaseBeverageType } from '../stores/beverage';
-import {watch} from "vue";
+import {onMounted, watch} from "vue";
 
 type baseProp ={
   base:BaseBeverageType
 }
 const props = defineProps<baseProp>();
-watch(()=>props.base, (x)=>{document.documentElement.style.setProperty("--base-color", x.color );});
+watch(()=>props.base, (x)=>updateBaseColor(x.color));
+onMounted(()=>updateBaseColor(props.base.color))
+
+function updateBaseColor(color:string){
+  document.documentElement.style.setProperty("--base-color", color )
+}
 </script>
 
 <style lang ="scss">

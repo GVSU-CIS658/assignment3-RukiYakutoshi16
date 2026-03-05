@@ -69,6 +69,7 @@
 import Beverage from "./components/Beverage.vue";
 import {bases, syrups, creamers, temps, currentTemp, defaultBase, defaultCreamer, defaultSyrup} from "./stores/beverage";
 
+
 const currentCream = defaultCreamer;
 const currentSyrup = defaultSyrup;
 const currentBase = defaultBase;
