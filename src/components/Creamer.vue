@@ -5,26 +5,33 @@
 </template>
 
 <script setup lang="ts">
-
-
-
-
+import { CreamerType} from ".././stores/beverage";
+import {watch} from "vue";
+type creamProp = {
+ cream: CreamerType;
+}
+const props = defineProps<creamProp>();
+watch(()=>props.cream, (x)=>{document.documentElement.style.setProperty("--foam-color", x.color );});
 </script>
 
 
 <style lang="scss" scoped>
+
+@mixin foam-color($color){background-color: $color;}
+
+
 .froth {
+  
   overflow: visible;
   transform: translateY(400%);
   position: relative;
   height: 20%;
   width: 100%;
-  background-color: #c6c6c6;
   animation: pour-tea 2s 2s forwards;
 }
 .foam {
   display: block;
-  background: #e4e0d2;
+  @include foam-color(var(--foam-color));
   border-radius: 30px;
   height: 40px;
   width: 40px;

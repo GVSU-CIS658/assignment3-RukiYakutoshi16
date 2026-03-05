@@ -4,7 +4,7 @@
     <Hot v-else />
     <Contents>
       <template v-slot:top>
-        <Creamer :cream="creamerType"/>
+        <Creamer :cream="creamerType" />
       </template>
       <template v-slot:mid>
         <Syrup :syrup="syrupType"/>

@@ -2,10 +2,24 @@
   <div class="baseBeverage"></div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { BaseBeverageType } from '../stores/beverage';
+import {watch} from "vue";
 
-<style scoped>
+type baseProp ={
+  base:BaseBeverageType
+}
+const props = defineProps<baseProp>();
+watch(()=>props.base, (x)=>{document.documentElement.style.setProperty("--base-color", x.color );});
+</script>
+
+<style lang ="scss">
+@mixin base-color($color){
+  background-color:$color;
+}
+
 .baseBeverage {
+  @include base-color(var(--base-color));
   position: relative;
   width: 100%;
   height: 100%;
