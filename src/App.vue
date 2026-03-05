@@ -62,8 +62,6 @@
         </template>
       </li>
     </ul>
-<h1>{{ currentCream }}</h1>
-
   </div>
 </template>
 
