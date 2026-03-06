@@ -10,20 +10,24 @@ type SyrupProp ={
   syrup: SyrupType
 }
 const props = defineProps<SyrupProp>()
-  watch(()=>props.syrup, x => {x.id=="s1"?
-  document.documentElement.style.setProperty("--syrup-transparent", "0%" )
-  :updateSyrupColor(x.color);})
+  watch(()=>props.syrup, x => updateSyrupColor(x.color));
 
 function updateSyrupColor(color:string){
+if (color=="#c6c6c6"){
+document.documentElement.style.setProperty("--syrup-transparent", "0%" );
+
+}
+else{
 document.documentElement.style.setProperty("--syrup-color", color );
-document.documentElement.style.setProperty("--syrup-transparent", "20%" );
+document.documentElement.style.setProperty("--syrup-transparent", "20%" );}
+
+
 }
 </script>
 
 <style lang="scss" scoped>
-$transparent: 20% !default;
 @mixin syrup-color($color,$transparent){
-  background-color: $color;
+  background:repeating-linear-gradient(45deg, white, white 10px, $color 10px, $color 20px);
   height: $transparent;
 }
 
