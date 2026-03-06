@@ -1,32 +1,45 @@
 <template>
   <div class="froth">
-    <div v-for=" in 5" class="foam" ></div>
+    <div v-for=" in foam " class="foam" ></div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { CreamerType} from ".././stores/beverage";
 import { watch} from "vue";
+
+var foam:number = 5;
 type creamProp = {
  cream: CreamerType;
 }
 const props = defineProps<creamProp>();
-watch(()=>props.cream, (x)=>{document.documentElement.style.setProperty("--foam-color", x.color );});
+watch(()=>props.cream, (x)=>{updateCream(x.color);});
+function updateCream(color:string){
+if (color=="transparent"){
+  document.documentElement.style.setProperty("--froth-transparent","0%"); 
+}
+else{ document.documentElement.style.setProperty("--foam-color", color); 
+  document.documentElement.style.setProperty("--froth-transparent","20%");}
+}
 
 </script>
 
 
 <style lang="scss" scoped>
 
-@mixin foam-color($color){background-color: $color;}
-
+@mixin foam-color($color){
+  background-color: $color;
+  }
+@mixin froth-height($transparent){
+height: $transparent;
+}
 
 .froth {
+  @include froth-height(var(--froth-transparent));
   background-color: #c6c6c6;
   overflow: visible;
   transform: translateY(400%);
   position: relative;
-  height: 20%;
   width: 100%;
   animation: pour-tea 2s 2s forwards;
 }
@@ -34,7 +47,7 @@ watch(()=>props.cream, (x)=>{document.documentElement.style.setProperty("--foam-
   display: block;
   @include foam-color(var(--foam-color));
   border-radius: 30px;
-  height: 40px;
+  height:40px;
   width: 40px;
   position: absolute;
 }
